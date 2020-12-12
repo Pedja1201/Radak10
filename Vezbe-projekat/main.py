@@ -9,7 +9,7 @@ def delete_tab(index):
     central_widget.removeTab(index)
 
 ""'Otvaranje fajla Struck docka u terminalu""'
-# def ope_file(path):
+# def open_file(path):
 #     with open(path) as infile:
 #         txt = infile.read()
 #         print(txt)
