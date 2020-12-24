@@ -35,7 +35,7 @@
         "not_required": [4, 7, 8, 9, 10]
     },
     {
-        "name": "Nivoo studija",
+        "name": "Nivo studija",
         "source": "nivo_studija.csv",
         "column_names": ["Oznaka", "Naziv"],
         "primary_key": [0],

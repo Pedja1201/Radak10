@@ -1,7 +1,7 @@
 from PySide2 import QtWidgets, QtGui, QtCore
 from data_generator import GenerickiModel
 
-class InputForma(QtWidgets.QDialog):            #TODO: promeniti sirinu forme i ostalo jos da se obezbedi sekvencijalni integritet
+class InputFormaBox(QtWidgets.QDialog):            #TODO: promeniti sirinu forme i ostalo jos da se obezbedi sekvencijalni integritet
     def __init__(self, parent, model):
         super().__init__(parent)
         self.model = model
@@ -16,10 +16,10 @@ class InputForma(QtWidgets.QDialog):            #TODO: promeniti sirinu forme i 
         mainLayout.addWidget(buttonBox)
         self.setLayout(mainLayout)
         
-        self.setWindowTitle(model.name + ": novi unos")
+        self.setWindowTitle(model.name + ": Novi unos")
         
     def createFormGroupBox(self):
-        self.formGroupBox = QtWidgets.QGroupBox("Unesite podatke")
+        self.formGroupBox = QtWidgets.QGroupBox("Unesite podatke.")
         layout = QtWidgets.QFormLayout()
         for name in self.model.column_names:
             text_input = QtWidgets.QLineEdit()
@@ -36,3 +36,4 @@ class InputForma(QtWidgets.QDialog):            #TODO: promeniti sirinu forme i 
                 break
         if not required_check:
             self.reject() # zatvori formu i odbij unos - možemo kasnije izmeniti i tu funkciju
+    

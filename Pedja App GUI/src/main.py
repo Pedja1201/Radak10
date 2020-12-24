@@ -1,6 +1,5 @@
 import sys
 from PySide2 import QtWidgets, QtGui, QtCore
-
 from strukture_dock import StructureDock
 from workspace import WorkspaceWidget
 from data_generator import GenerickiModel
@@ -18,7 +17,7 @@ def open_file(index):
         #   - proci kroz tabove->workspace->model->source   #nisam nasao kako da iterisem kroz tabove, tj. kako da vidim koji su sve tabovi tu
         #       - ako postoji tab u kojem model.source == file_name: prebacimo fokus na njega
         #       - u suprotnom: kreiramo novi workspace i tab (kao ispod) i prebacimo fokus na njega
-        #text = f.read()
+        # text = f.read()
         model = None  # izaberemo odgovarajuci model u zavisnosti od naziva file-a
         file_name = path.split("/")[-1]
         for m in models:                        #kako on ovde dohvati models kada je models definisano skroz dole?
@@ -27,10 +26,10 @@ def open_file(index):
                 break
         if(model is not None):
             new_workspace = WorkspaceWidget(central_widget, model, models)
-            central_widget.addTab(new_workspace, QtGui.QIcon("../slike/student.png"), model.name)  #ovde setujemo ime novog taba, tj. splitujemo putanju i uzmemo poslednji element
+            central_widget.addTab(new_workspace, QtGui.QIcon("../picture/images.png"), model.name)  #ovde setujemo ime novog taba, tj. splitujemo putanju i uzmemo poslednji element
             central_widget.setCurrentWidget(new_workspace)    #sa ovim smo promenili fokus na novootvoreni tab
-        #new_workspace.show_text(text)
-        #print(f.read())
+        # new_workspace.show_text(text)
+        # print(f.read())
 
 ''' Metoda dza ocitavanje fajla structura *Djape file* '''
 # def read_file(index):
@@ -48,10 +47,10 @@ def open_file(index):
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     main_window = QtWidgets.QMainWindow()
-    main_window.resize(700, 500)
+    main_window.resize(1500, 700)
     # Izgled prozora
     main_window.setWindowTitle("Prototype information resources")
-    main_window.setWindowIcon(QtGui.QIcon("picture/icons8-edit-file-64.png"))
+    app.setWindowIcon(QtGui.QIcon("../picture/icons8-edit-file-64.png"))
 
     
 
@@ -64,14 +63,14 @@ if __name__ == "__main__":
     open_menu = QtWidgets.QMenu("Open", menu_bar)
 
     #Icon for menuAction
-    fileIcon = QtGui.QIcon("picture/icons8-edit-file-64.png")
+    fileIcon = QtGui.QIcon("../picture/icons8-edit-file-64.png")
     file_menu.addAction(fileIcon, "New file") # Akcija menija
-    fileIcon = QtGui.QIcon("picture/print.png")
+    fileIcon = QtGui.QIcon("../picture/print.png")
     file_menu.addAction(fileIcon, "Print") # Akcija menija
     file_menu.setToolTip("Open")
-    editIcon = QtGui.QIcon("picture/textedit.png")
+    editIcon = QtGui.QIcon("../picture/textedit.png")
     edit_menu.addAction(editIcon, "Settings")# Akcija menija
-    viewIcon = QtGui.QIcon("picture/diplay.png")
+    viewIcon = QtGui.QIcon("../picture/diplay.png")
     view_menu.addAction(viewIcon, "Window") # Akcija menija
 
 
@@ -83,15 +82,39 @@ if __name__ == "__main__":
 
     #ToolBar sa ikonicama
     tool_bar = QtWidgets.QToolBar(main_window)
-    t1 = QtGui.QIcon("picture/diplay.png")
+    t1 = QtGui.QIcon("../picture/diplay.png")
     tool_bar.addAction(t1, "Display")
-    t2 = QtGui.QIcon("picture/mail.png")
+    t2 = QtGui.QIcon("../picture/mail.png")
     tool_bar.addAction(t2, "Inbox")
-    t3 = QtGui.QIcon("picture/telefon.png")
+    t3 = QtGui.QIcon("../picture/telefon.png")
     tool_bar.addAction(t3, "Call")
-    t4 = QtGui.QIcon("picture/wifi.png")
+    t4 = QtGui.QIcon("../picture/wifi.png")
     tool_bar.addAction(t4, "Wi-fi")
+
+    text_editor_wgt = QtWidgets.QTextEdit("Unesite tekst", main_window)
+    main_window.setCentralWidget(text_editor_wgt)
     
+    status_bar = QtWidgets.QStatusBar(main_window)
+    status_bar.showMessage("Status bar je prikazan...")
+
+
+
+
+    # dock_wgt = QtWidgets.QDockWidget("Documents", main_window)
+    # main_window.addDockWidget(QtCore.Qt.LeftDockWidgetArea, dock_wgt)   #mora se importovati QtCOre!!!
+    
+    # obican_wgt = QtWidgets.QWidget(main_window)                         #napravimo obican (genericki) widget, setujemo layout i na kraju ga postavimo za centralni
+    # layout = QtWidgets.QVBoxLayout()                                    #u konstruktru se odredjuje jel horizontalan ili vertikalan, u ovom slucaju H-horizontalan ili V-vertikalan
+    # text_edit_wgt1 = QtWidgets.QTextEdit("Unesite tekst", main_window)
+    # text_edit_wgt2 = QtWidgets.QTextEdit("Unesite tekst", main_window)
+    # layout.addWidget(text_edit_wgt1)
+    # layout.addWidget(text_edit_wgt2)
+    # obican_wgt.setLayout(layout)                                        #obican widget, jer nije nam bitno koji je u ovom slucaju jer svaki moze da ima layout
+    # main_window.setCentralWidget(obican_wgt)
+
+
+
+
     structure_dock = StructureDock("Strukture dokumenata", main_window)
     structure_dock.tree.clicked.connect(open_file)
     main_window.addDockWidget(QtCore.Qt.LeftDockWidgetArea, structure_dock)
@@ -109,7 +132,7 @@ if __name__ == "__main__":
     # workspace.show_tabs()
 
 
-    # central_widget.addTab(workspace, QtGui.QIcon("../slike/student.png"), "Dobro dosli")
+    # central_widget.addTab(workspace, QtGui.QIcon("../slike/images.png"), "Dobro dosli")
     central_widget.setTabsClosable(True)
     #central_widget.removeTab(0)                                    #ako necu da imam pocetni tab, treba ga obrisati
     central_widget.tabCloseRequested.connect(delete_tab)
@@ -117,11 +140,6 @@ if __name__ == "__main__":
     main_window.setCentralWidget(central_widget)
     
 
-    
-    status_bar = QtWidgets.QStatusBar(main_window)
-    status_bar.showMessage("Status bar je prikazan...")
-
-    # central_widget.setTabsClosable(True)
 
     main_window.setMenuBar(menu_bar)
     main_window.addToolBar(tool_bar)
