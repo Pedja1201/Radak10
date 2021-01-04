@@ -5,6 +5,8 @@ from workspace import WorkspaceWidget
 from data_generator import GenerickiModel
 import json
 
+from MainWindow import MainWindow
+
 '""Brisanje taba u app'''
 def delete_tab(index):
     central_widget.removeTab(index)
@@ -17,7 +19,7 @@ def open_file(index):
         #   - proci kroz tabove->workspace->model->source   #nisam nasao kako da iterisem kroz tabove, tj. kako da vidim koji su sve tabovi tu
         #       - ako postoji tab u kojem model.source == file_name: prebacimo fokus na njega
         #       - u suprotnom: kreiramo novi workspace i tab (kao ispod) i prebacimo fokus na njega
-        # text = f.read()
+        text = f.read()   
         model = None  # izaberemo odgovarajuci model u zavisnosti od naziva file-a
         file_name = path.split("/")[-1]
         for m in models:                        #kako on ovde dohvati models kada je models definisano skroz dole?
@@ -28,8 +30,8 @@ def open_file(index):
             new_workspace = WorkspaceWidget(central_widget, model, models)
             central_widget.addTab(new_workspace, QtGui.QIcon("../picture/images.png"), model.name)  #ovde setujemo ime novog taba, tj. splitujemo putanju i uzmemo poslednji element
             central_widget.setCurrentWidget(new_workspace)    #sa ovim smo promenili fokus na novootvoreni tab
-        # new_workspace.show_text(text)
-        # print(f.read())
+        new_workspace.show_text(text)
+        print(f.read())
 
 ''' Metoda dza ocitavanje fajla structura *Djape file* '''
 # def read_file(index):
