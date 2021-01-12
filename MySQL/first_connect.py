@@ -1,6 +1,11 @@
 import mysql.connector
 #dobavljanje konekcije
-connection = mysql.connector.connect(user='root', password='pedja10', host='localhost', port='3306', database='MyDataBase')
+connection = mysql.connector.connect(
+    user='root', 
+    password='pedja10', 
+    host='localhost', 
+    port='3306', 
+    database='MyDataBase')
 
 csor = connection.cursor()
 

@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "c:\\Users\\RADAK\\baze\\bazepodataka\\Scripts\\python.exe"
+    "python.pythonPath": "C:\\Users\\RADAK\\AppData\\Local\\Programs\\Python\\Python38\\python.exe",
+    "git.ignoreLimitWarning": true
 }

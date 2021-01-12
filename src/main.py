@@ -5,7 +5,7 @@ from workspace import WorkspaceWidget
 from data_generator import GenerickiModel
 import json
 
-from MainWindow import MainWindow
+from dialog_app import DialogApp
 
 '""Brisanje taba u app'''
 def delete_tab(index):
@@ -42,26 +42,25 @@ def open_file(index):
 #         central_widget.addTab(new_workspace, path.split("/")[-1])
 #         new_workspace.show_text(text)
 
-
-
 #TODO:
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     main_window = QtWidgets.QMainWindow()
     main_window.resize(1500, 700)
+    # demo = DialogApp()
+    # demo.show()
     # Izgled prozora
     main_window.setWindowTitle("Prototype information resources")
     app.setWindowIcon(QtGui.QIcon("../picture/icons8-edit-file-64.png"))
 
     
-
     #Meni bar
     menu_bar = QtWidgets.QMenuBar(main_window)
     file_menu = QtWidgets.QMenu("File",menu_bar)
     edit_menu = QtWidgets.QMenu("Edit", menu_bar)
     view_menu = QtWidgets.QMenu("View", menu_bar)
-    help_menu = QtWidgets.QMenu("Help", menu_bar)
+    save_menu = QtWidgets.QMenu("Save", menu_bar)
     open_menu = QtWidgets.QMenu("Open", menu_bar)
 
     #Icon for menuAction
@@ -76,10 +75,11 @@ if __name__ == "__main__":
     view_menu.addAction(viewIcon, "Window") # Akcija menija
 
 
+
     menu_bar.addMenu(file_menu)
     menu_bar.addMenu(edit_menu)
     menu_bar.addMenu(view_menu)
-    menu_bar.addMenu(help_menu)
+    menu_bar.addMenu(save_menu)
     menu_bar.addMenu(open_menu)
 
     #ToolBar sa ikonicama
