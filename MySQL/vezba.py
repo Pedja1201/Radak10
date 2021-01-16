@@ -1,15 +1,15 @@
 import mysql.connector
 
-
+#TODOO: Napravi konekciju!!!
 db = mysql.connector.connect(
-    host="localhost",
+    host="ProbaPython",
     user="root",
     password="pedja10",
-    database="PedjaDataBase",
+    database="Python",
     port=3306
 )
 
-print("Hey, I think i m connected")
+print("Hey, I think I'm connected")
 
 cur = db.cursor()
 for i in range(100):
