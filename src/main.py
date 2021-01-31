@@ -48,8 +48,6 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     main_window = QtWidgets.QMainWindow()
     main_window.resize(1500, 700)
-    # demo = DialogApp()
-    # demo.show()
     # Izgled prozora
     main_window.setWindowTitle("Prototype information resources")
     app.setWindowIcon(QtGui.QIcon("../picture/icons8-edit-file-64.png"))

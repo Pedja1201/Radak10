@@ -1,8 +1,9 @@
 import mysql.connector
   db_connection = mysql.connector.connect(
-  host= 'localhost',
+  host= '127.0.0.1',
   user= 'root',
   passwd= 'pedja10'
+  database='Pedja'
   )
 # creating database_cursor to perform SQL operation
 db_cursor = db_connection.cursor()
@@ -14,4 +15,4 @@ db_cursor.execute("SHOW DATABASES")
 for db in db_cursor:
 	print(db)
 
-  #Prikaz nove sheme u workbanchu.
+#Prikaz nove sheme u workbanchu.

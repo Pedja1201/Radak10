@@ -1,32 +1,24 @@
+import datetime
 import mysql.connector
 
-#TODOO: Napravi konekciju!!!
-db = mysql.connector.connect(
-    host="ProbaPython",
-    user="root",
-    password="pedja10",
-    database="Python",
-    port=3306
+cnx = mysql.connector.connect(user='root', 
+  host='localhost', 
+  database='Pedja', 
+  password='pedja10'
 )
+cursor = cnx.cursor()
 
-print("Hey, I think I'm connected")
+query = ("SELECT first_name, last_name, hire_date FROM mysql "
+         "WHERE hire_date BETWEEN %s AND %s")
 
-cur = db.cursor()
-for i in range(100):
-    cur.execute("INSERT INTO employees (ID, NAME) VALUES (%s, %s)", (i +10, f'Pedja{i}' ))
+hire_start = datetime.date(1999, 1, 1)
+hire_end = datetime.date(1999, 12, 31)
 
-cur.execute("SELECT ID,NAME FROM employees")
+cursor.execute(query, (hire_start, hire_end))
 
-rows = cur.fetchall()
+for (first_name, last_name, hire_date) in cursor:
+  print("{}, {} was hired on {:%d %b %Y}".format(
+    last_name, first_name, hire_date))
 
-for r in rows:
-    print(f" ID = {r[0]} NAME = {r[1]}")
-
-
-cur.close()
-
-db.close()
-
-
-
-
+cursor.close()
+cnx.close()

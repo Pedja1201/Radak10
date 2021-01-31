@@ -1,28 +1,28 @@
+from PySide2.QtWidgets import (
+    QApplication, QMainWindow, QAction, QPushButton,
+    QWidget, QLabel, QVBoxLayout, QHBoxLayout
+)
+
 import sys
-from PySide2.QtWidgets import (QWidget,QFileDialog,QTextEdit,QPushButton,QLabel,QVBoxLayout)
-from PySide2.QtCore import QDir
-
-
 
 class DialogApp(QWidget):
     def __init__(self):
         super().__init__()
-#TODO:Uradi funkciju za otvaranje tool-a
 
-    
-        self.resize(800,800)
+        v = QVBoxLayout()
+        h = QHBoxLayout()
 
-        self.button1 = QPushButton('Upload')
+        for a in range(10):
+            button = QPushButton(str(a))
+            button.pressed.connect(
+                lambda val=a: self.button_pressed(val)
+            )
+            h.addWidget(button)
 
-        self.button2 = QPushButton('Import')
+        v.addLayout(h)
+        self.label = QLabel("")
+        v.addWidget(self.label)
+        self.setLayout(v)
 
-        self.labelimage=QLabel()
-        self.textEditor = QTextEdit()
-
-        layout = QVBoxLayout()
-        layout.addWidget(self.button1)
-        layout.addWidget(self.labelimage)
-        layout.addWidget(self.button2)
-        layout.addWidget(self.textEditor)
-        self.setLayout(layout)
-
+    def button_pressed(self, n):
+        self.label.setText(str(n))
