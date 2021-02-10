@@ -10,14 +10,14 @@ connection = mysql.connector.connect(
 
 csor = connection.cursor()
 
-insert_statement = "INSERT INTO zaposleni (ime, prezime) VALUES (%s, %s)"
+insert_statement = "INSERT INTO studenti (ime, prezime) VALUES (%s, %s)"
 insert_data = ('Pedja', 'Radak')
 insert_several = [('Pedja', 'Radak'), ('Nikola', 'Nikolic'), ('Pavle', 'Palic')]
 
 csor.execute(insert_statement, insert_data)
 #csor.executemany(insert_statement, insert_several)
 
-query = "SELECT ime, prezime FROM zaposleni WHERE zaposleni.satnica*zaposleni.radni_sati BETWEEN %s AND %s;"
+query = "SELECT ime, prezime FROM studenti WHERE studenti.satnica*studenti.radni_sati BETWEEN %s AND %s;"
 min_plata = 500
 max_plata = 2000
 
@@ -36,7 +36,7 @@ while row is not None:
     row = csor.fetchone()
 
 #primer sa procedurom
-csor.callproc("ZaposleniPoImenu", ["Nikola"])
+csor.callproc("studentiPoImenu", ["Nikola"])
 for res in csor.stored_results():
     print(res.fetchall())
 
